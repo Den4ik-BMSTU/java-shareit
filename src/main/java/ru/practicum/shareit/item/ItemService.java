@@ -15,6 +15,8 @@ import ru.practicum.shareit.error.exception.BadRequestException;
 import ru.practicum.shareit.item.dto.CommentDto;
 import ru.practicum.shareit.item.repository.CommentRepository;
 import ru.practicum.shareit.user.repository.UserRepository;
+import ru.practicum.shareit.item.dto.ItemDtoShort;
+import ru.practicum.shareit.item.model.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
