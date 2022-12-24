@@ -2,15 +2,11 @@ package ru.practicum.shareit.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.practicum.shareit.error.exception.ConflictException;
 import ru.practicum.shareit.error.exception.NotFoundException;
-import ru.practicum.shareit.misc.CrudRepository;
 import ru.practicum.shareit.user.dto.UserDto;
-import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ru.practicum.shareit.user.UserMapper.toUser;
@@ -57,5 +53,4 @@ public class UserService {
                 .map(UserMapper::toUserDto)
                 .collect(Collectors.toList());
     }
-
 }
