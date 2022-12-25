@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import ru.practicum.shareit.booking.dto.BookingDtoIncome;
 import ru.practicum.shareit.booking.dto.BookingDtoOutcome;
 import ru.practicum.shareit.booking.dto.BookingDtoShort;
-import ru.practicum.shareit.booking.Booking;
-import ru.practicum.shareit.booking.BookingRepository;
+import ru.practicum.shareit.booking.model.Booking;
+import ru.practicum.shareit.booking.repository.BookingRepository;
 import ru.practicum.shareit.error.exception.BadRequestException;
 import ru.practicum.shareit.error.exception.NotFoundException;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.item.repository.ItemRepository;
-import ru.practicum.shareit.user.User;
+import ru.practicum.shareit.user.model.User;
 import ru.practicum.shareit.user.repository.UserRepository;
 
 import java.time.LocalDateTime;
@@ -20,11 +20,10 @@ import java.util.stream.Collectors;
 
 import static ru.practicum.shareit.booking.BookingMapper.toBooking;
 import static ru.practicum.shareit.booking.BookingMapper.toBookingDto;
-import static ru.practicum.shareit.booking.Status.*;
+import static ru.practicum.shareit.booking.model.Status.*;
 
 @Service
 @RequiredArgsConstructor
-
 public class BookingService {
 
     public final BookingRepository bookingRepository;
@@ -142,7 +141,8 @@ public class BookingService {
                 bookings = bookingRepository.findAllByOwnerAndStatus(userId, REJECTED.ordinal());
                 break;
             default:
-                throw new BadRequestException("Unknown state: " + state);
+                throw new RuntimeException("Unknown state: " + state);
+
         }
 
         return bookings.stream()

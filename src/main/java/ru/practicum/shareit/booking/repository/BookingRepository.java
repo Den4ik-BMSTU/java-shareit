@@ -1,9 +1,9 @@
-package ru.practicum.shareit.booking;
+package ru.practicum.shareit.booking.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import ru.practicum.shareit.booking.Booking;
-import ru.practicum.shareit.booking.Status;
+import ru.practicum.shareit.booking.model.Booking;
+import ru.practicum.shareit.booking.model.Status;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,8 +31,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
             "(SELECT id FROM items WHERE owner_id = ?1) ORDER BY id DESC", nativeQuery = true)
     List<Booking> findAllByOwner(Long ownerId);
 
-    @Query(value = "SELECT * FROM bookings WHERE item_id IN " +
-            "(SELECT id FROM items WHERE owner_id = ?1) " +
+    @Query(value = "SELECT * FROM bookings WHERE item_id IN (SELECT id FROM items WHERE owner_id = ?1) " +
             "AND status = ?2 ORDER BY id DESC", nativeQuery = true)
     List<Booking> findAllByOwnerAndStatus(Long ownerId, int status);
 
