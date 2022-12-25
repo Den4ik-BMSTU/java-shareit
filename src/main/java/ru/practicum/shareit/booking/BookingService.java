@@ -108,7 +108,8 @@ public class BookingService {
                 bookings = bookingRepository.findAllByBookerIdAndStatusOrderByIdDesc(userId, REJECTED);
                 break;
             default:
-                throw new BadRequestException("Unknown state: " + state);
+                throw new BadRequestException("Unknown state: " + state);//привет, вот на этом месте тесты постам
+                // проваливаются, код ошибки норм, но вот это сообщение не выходит, почему я не знаю
         }
 
         return bookings.stream()
@@ -141,7 +142,8 @@ public class BookingService {
                 bookings = bookingRepository.findAllByOwnerAndStatus(userId, REJECTED.ordinal());
                 break;
             default:
-                throw new RuntimeException("Unknown state: " + state);
+                throw new BadRequestException("Unknown state: " + state);//привет, вот на этом месте тесты постам
+                // проваливаются, код ошибки норм, но вот это сообщение не выходит, почему я не знаю
 
         }
 
