@@ -17,6 +17,6 @@ public class UserDto {
     @NotNull(groups = Marker.OnCreate.class)
     private String name;
     @NotNull(groups = Marker.OnCreate.class)
-    @Email(groups = Marker.OnCreate.class)
+    @Email(groups = {Marker.OnCreate.class, Marker.OnUpdate.class})
     private String email;
 }
