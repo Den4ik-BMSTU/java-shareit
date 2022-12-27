@@ -54,7 +54,7 @@ public class ErrorHandler {
     public ErrorResponse handleBadRequest(final BadRequestException e) {
         log.error("Bad request exception", e);
 
-        return new ErrorResponse("Bad request exception", e.getMessage());
+        return new ErrorResponse("Unknown state: UNSUPPORTED_STATUS", e.getMessage());
     }
 
     @ExceptionHandler
