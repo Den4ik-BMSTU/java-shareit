@@ -25,6 +25,14 @@ public class ErrorHandler {
         return new ErrorResponse("Conflict Exception", e.getMessage());
     }
 
+    /*@ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class, BadRequestException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleValidationException() {
+        log.error("Validation Exception");
+
+        return new ErrorResponse("Validation Exception");
+    }*/
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidationException(final MethodArgumentNotValidException e) {
@@ -54,7 +62,7 @@ public class ErrorHandler {
     public ErrorResponse handleBadRequest(final BadRequestException e) {
         log.error("Bad request exception", e);
 
-        return new ErrorResponse("Unknown state: UNSUPPORTED_STATUS", e.getMessage());
+        return new ErrorResponse(String.format(e.getMessage()), e.getMessage());
     }
 
     @ExceptionHandler
