@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.practicum.shareit.error.exception.BadRequestException;
 import ru.practicum.shareit.error.exception.ConflictException;
 import ru.practicum.shareit.error.exception.NotFoundException;
 import ru.practicum.shareit.error.model.ErrorResponse;
@@ -23,6 +24,14 @@ public class ErrorHandler {
 
         return new ErrorResponse("Conflict Exception", e.getMessage());
     }
+
+    /*@ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class, BadRequestException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleValidationException() {
+        log.error("Validation Exception");
+
+        return new ErrorResponse("Validation Exception");
+    }*/
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -46,6 +55,14 @@ public class ErrorHandler {
         log.error("Not found exception", e);
 
         return new ErrorResponse("Not found exception", e.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleBadRequest(final BadRequestException e) {
+        log.error("Bad request exception", e);
+
+        return new ErrorResponse(String.format(e.getMessage()), e.getMessage());
     }
 
     @ExceptionHandler

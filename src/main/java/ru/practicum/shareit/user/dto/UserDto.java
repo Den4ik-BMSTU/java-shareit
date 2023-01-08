@@ -6,17 +6,17 @@ import ru.practicum.shareit.misc.Marker;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 @Data
 @AllArgsConstructor
 public class UserDto {
 
-    @Null(groups = Marker.OnUpdate.class)
+    //@Null(groups = Marker.OnUpdate.class) какой-то смысл у меня в этом был, сейчас вспомнить не могу, пока уберу,
+    // если вспомню, то верну
     private Long id;
     @NotNull(groups = Marker.OnCreate.class)
     private String name;
     @NotNull(groups = Marker.OnCreate.class)
-    @Email(groups = Marker.OnCreate.class)
+    @Email(groups = {Marker.OnCreate.class, Marker.OnUpdate.class})
     private String email;
 }
