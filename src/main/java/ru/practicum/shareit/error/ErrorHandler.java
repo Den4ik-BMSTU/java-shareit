@@ -25,14 +25,6 @@ public class ErrorHandler {
         return new ErrorResponse("Conflict Exception", e.getMessage());
     }
 
-    /*@ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class, BadRequestException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleValidationException() {
-        log.error("Validation Exception");
-
-        return new ErrorResponse("Validation Exception");
-    }*/
-
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidationException(final MethodArgumentNotValidException e) {
