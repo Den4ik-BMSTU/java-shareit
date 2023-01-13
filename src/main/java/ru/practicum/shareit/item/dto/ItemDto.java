@@ -19,6 +19,7 @@ public class ItemDto {
     private String description;
     @NotNull(groups = Marker.OnCreate.class)
     private Boolean available;
+    private Long requestId;
     private BookingDtoShort lastBooking;
     private BookingDtoShort nextBooking;
     private List<CommentDto> comments;
