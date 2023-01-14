@@ -37,7 +37,7 @@ public class BookingService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("Пользователь по ID " + userId + " не найден!"));
         Item item = itemRepository.findById(bookingDto.getItemId())
-                .orElseThrow(() -> new NotFoundException("Вещь по ID" + bookingDto.getItemId() + " не найдена!"));
+                .orElseThrow(() -> new NotFoundException("Вещь по ID " + bookingDto.getItemId() + " не найдена!"));
         if (userId == item.getOwnerId()) {
             throw new NotFoundException("Собрались бронировать собственную вещь?");
         }

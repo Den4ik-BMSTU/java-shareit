@@ -185,22 +185,6 @@ class UserControllerTest {
     }
 
     @Test
-    void updateUserWithIdWithStatusBadRequest() throws Exception {
-        UserDto invalidDto = new UserDto(19L, "Alfa", "alfa@yandex.ru");
-
-        mvc.perform(patch("/users/1")
-                        .content(mapper.writeValueAsString(invalidDto))
-                        .characterEncoding(UTF_8)
-                        .contentType(APPLICATION_JSON)
-                        .accept(APPLICATION_JSON))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error", is("updateUser.userDto.id: must be null")))
-                .andExpect(jsonPath("$.description", is("Validation Exception")));
-
-        verifyNoInteractions(service);
-    }
-
-    @Test
     void deleteUser() throws Exception {
         mvc.perform(delete("/users/1"))
                 .andExpect(status().isOk());

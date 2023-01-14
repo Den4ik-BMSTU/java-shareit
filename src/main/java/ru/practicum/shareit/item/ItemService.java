@@ -77,7 +77,7 @@ public class ItemService {
         Item item = toItem(itemDto);
         Item itemToUpdate = itemRepository.findById(item.getId())
                 .filter(i -> i.getOwnerId() == userId)
-                .orElseThrow(() -> new NotFoundException("Вещь  " + item.getId() + " не найдена!"));
+                .orElseThrow(() -> new NotFoundException("Вещь " + item.getId() + " не найдена!"));
         if (item.getName() != null) {
             itemToUpdate.setName(item.getName());
         }
