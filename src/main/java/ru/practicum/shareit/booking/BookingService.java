@@ -92,12 +92,12 @@ public class BookingService {
         Pageable page = PageRequest.of(from / size, size);;
         switch (state) {
             case "PAST":
-                bookings = bookingRepository.
-                        findAllByBookerIdAndEndBeforeOrderByIdDesc(userId, LocalDateTime.now(), page);
+                bookings = bookingRepository
+                        .findAllByBookerIdAndEndBeforeOrderByIdDesc(userId, LocalDateTime.now(), page);
                 break;
             case "FUTURE":
-                bookings = bookingRepository.
-                        findAllByBookerIdAndStartAfterOrderByIdDesc(userId, LocalDateTime.now(), page);
+                bookings = bookingRepository
+                         .findAllByBookerIdAndStartAfterOrderByIdDesc(userId, LocalDateTime.now(), page);
                 break;
             case "CURRENT":
                 bookings = bookingRepository.findAllByBookerIdAndStartBeforeAndEndAfterOrderByIdDesc(userId,

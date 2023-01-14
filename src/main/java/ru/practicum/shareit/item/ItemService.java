@@ -72,7 +72,7 @@ public class ItemService {
 
     public ItemDtoShort update(ItemDto itemDto, long userId) {
         if (!userRepository.existsById(userId)) {
-            throw new NotFoundException("Пользователь по ID " + userId +" не найден");
+            throw new NotFoundException("Пользователь по ID " + userId + " не найден");
         }
         Item item = toItem(itemDto);
         Item itemToUpdate = itemRepository.findById(item.getId())
