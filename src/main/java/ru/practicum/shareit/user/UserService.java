@@ -1,7 +1,9 @@
 package ru.practicum.shareit.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import ru.practicum.shareit.error.exception.DuplicateDataException;
 import ru.practicum.shareit.error.exception.NotFoundException;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.model.User;
@@ -20,8 +22,13 @@ public class UserService {
     private final UserRepository repository;
 
     public UserDto add(UserDto userDto) {
-        User userToAdd = toUser(userDto);
-        return toUserDto(repository.save(userToAdd));
+        try {
+            User userToAdd = toUser(userDto);
+            return toUserDto(repository.save(userToAdd));
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateDataException("Пользователь с такими данными уже существует в базе!");
+        }
+
     }
 
     public UserDto update(UserDto userDto, long id) {
@@ -32,13 +39,14 @@ public class UserService {
             userToUpdate.setName(user.getName());
         }
         if (user.getEmail() != null) {
-                        userToUpdate.setEmail(user.getEmail());
+            userToUpdate.setEmail(user.getEmail());
         }
 
         return toUserDto(repository.save(userToUpdate));
     }
 
     public void delete(long id) {
+        repository.findById(id).orElseThrow(() -> new NotFoundException("Пользователь по ID " + id + " не найден!"));
         repository.deleteById(id);
     }
 
