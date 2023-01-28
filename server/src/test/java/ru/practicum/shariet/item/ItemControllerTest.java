@@ -10,6 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import ru.practicum.shareit.error.exception.BadRequestException;
 import ru.practicum.shareit.error.exception.ConflictException;
 import ru.practicum.shareit.error.exception.NotFoundException;
+import ru.practicum.shareit.item.ItemController;
+import ru.practicum.shareit.item.ItemService;
 import ru.practicum.shareit.item.dto.CommentDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.dto.ItemDtoShort;

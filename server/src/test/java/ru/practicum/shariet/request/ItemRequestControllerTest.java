@@ -9,6 +9,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.practicum.shareit.error.exception.NotFoundException;
 import ru.practicum.shareit.item.dto.ItemDtoShort;
+import ru.practicum.shareit.request.ItemRequestController;
+import ru.practicum.shareit.request.ItemRequestService;
 import ru.practicum.shareit.request.dto.ItemRequestDto;
 import ru.practicum.shareit.request.dto.ItemRequestDtoFull;
 
