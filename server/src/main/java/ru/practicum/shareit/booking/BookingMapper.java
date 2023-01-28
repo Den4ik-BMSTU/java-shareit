@@ -1,4 +1,4 @@
-package ru.practicum.shariet.booking;
+package ru.practicum.shareit.booking;
 
 import ru.practicum.shareit.booking.dto.BookingDtoIncome;
 import ru.practicum.shareit.booking.dto.BookingDtoOutcome;

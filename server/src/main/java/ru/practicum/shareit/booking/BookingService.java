@@ -1,4 +1,4 @@
-package ru.practicum.shariet.booking;
+package ru.practicum.shareit.booking;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
